@@ -7,7 +7,7 @@ export async function fetchBaike(word: string, index?: string) {
   const { data } = await http.get(api, { params: { n: index ?? '' } })
 
   if (data.status === 404) {
-    return data.data.message || '目标词条不存在'
+    return data.message || '目标词条不存在'
   } else {
     return [
       segment.image(data.data.cover),

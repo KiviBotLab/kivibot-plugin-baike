@@ -17,14 +17,14 @@ plugin.onMounted(bot => {
   })
 
   plugin.onMatch(baikeIndex, async event => {
-    const results = <string[]>baike.exec(event.raw_message)
+    const results = <string[]>baikeIndex.exec(event.raw_message)
     const [word, idx] = results
     const info = await fetchBaike(word, idx)
     event.reply(info)
   })
 
   plugin.onMatch(item, async event => {
-    const word = baike.exec(event.raw_message)![1]
+    const word = item.exec(event.raw_message)![1]
     const info = await fetchItems(word, bot.uin)
 
     if (Array.isArray(info)) {
