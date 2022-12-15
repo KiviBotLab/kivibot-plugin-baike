@@ -8,12 +8,17 @@ export async function fetchBaike(word: string, index?: string) {
 
   if (data.status === 404) {
     return data.message || '目标词条不存在'
-  } else {
+  }
+
+  if (data.status === 200) {
     return [
       segment.image(data.data.cover),
       '\n' + data.data.description,
       '\n详情：' + data.data.link
     ]
+  } else {
+    console.error(data.message)
+    return '啊哦，出错了'
   }
 }
 
@@ -23,10 +28,17 @@ export async function fetchItems(word: string, uin: number): Promise<string | Fo
 
   if (data.status === 404) {
     return data.message || '目标词条不存在'
+  }
+
+  if (data.status === 200) {
+    const msgs = [
+      ...data.data.list.map((e: any) => `${e.title}\n${e.link}`),
+      '以上数据来源于百度百科'
+    ]
+
+    return msgs.map((e, i) => ({ user_id: uin, message: i > 0 ? `${i}.${e}` : e }))
   } else {
-    return [
-      `词条【${data.data.item}】有以下义项：`,
-      ...data.data.list.map((e: any) => `${e.title}\n${e.link}`)
-    ].map(e => ({ user_id: uin, message: e }))
+    console.error(data.message)
+    return '啊哦，出错了'
   }
 }

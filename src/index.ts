@@ -18,7 +18,7 @@ plugin.onMounted(bot => {
 
   plugin.onMatch(baikeIndex, async event => {
     const results = <string[]>baikeIndex.exec(event.raw_message)
-    const [word, idx] = results
+    const [_, word, idx] = results
     const info = await fetchBaike(word, idx)
     event.reply(info)
   })
@@ -26,9 +26,11 @@ plugin.onMounted(bot => {
   plugin.onMatch(item, async event => {
     const word = item.exec(event.raw_message)![1]
     const info = await fetchItems(word, bot.uin)
+    const n = info.length - 1
 
     if (Array.isArray(info)) {
-      event.reply(await makeForwardMsg.bind(bot)(info, `${word} 的义项列表`))
+      const msg = await makeForwardMsg.bind(bot)(info, `【${word}】共有 ${n} 个义项`, '轻按查看')
+      event.reply(msg)
     } else {
       event.reply(info)
     }
