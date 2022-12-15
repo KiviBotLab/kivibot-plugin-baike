@@ -37,7 +37,7 @@ export async function fetchItems(
   if (data.status === 200) {
     const msgs = data.data.list.map((e: any, i: number) => {
       const title = `${e.title}\n${e.link}`
-      return i > 0 ? `${i}.${title}` : title
+      return `${i + 1}.${title}`
     }) as string[]
 
     msgs.push('以上数据来源于百度百科')
