@@ -5,9 +5,9 @@ import { fetchBaike, fetchItems } from './services'
 const { version } = require('../package.json')
 const plugin = new KiviPlugin('百度百科', version)
 
-const baike = /^百科\s*(\w+)\s*$/
-const baikeIndex = /^百科\s*(\w+)\s+(\d+)\s*$/
-const item = /^词条\s*(\w+)\s*$/
+const baike = /^百科\s*([^\s]+)\s*$/
+const baikeIndex = /^百科\s*([^\s]+)\s+(\d+)\s*$/
+const item = /^词条\s*([^\s]+)\s*$/
 
 plugin.onMounted(bot => {
   plugin.onMatch(baike, async event => {
