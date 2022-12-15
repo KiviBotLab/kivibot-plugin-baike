@@ -25,7 +25,7 @@ plugin.onMounted(bot => {
 
   plugin.onMatch(item, async event => {
     const word = item.exec(event.raw_message)![1]
-    const info = await fetchItems(word, bot.uin)
+    const info = await fetchItems(word, bot.uin, bot.nickname)
     const n = info.length - 1
 
     if (Array.isArray(info)) {

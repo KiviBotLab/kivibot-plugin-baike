@@ -22,7 +22,11 @@ export async function fetchBaike(word: string, index?: string) {
   }
 }
 
-export async function fetchItems(word: string, uin: number): Promise<string | Forwardable[]> {
+export async function fetchItems(
+  word: string,
+  uin: number,
+  nickname: string
+): Promise<string | Forwardable[]> {
   const api = `https://baike.deno.dev/item_list/${word}`
   const { data } = await http.get(api)
 
@@ -31,12 +35,14 @@ export async function fetchItems(word: string, uin: number): Promise<string | Fo
   }
 
   if (data.status === 200) {
-    const msgs = [
-      ...data.data.list.map((e: any) => `${e.title}\n${e.link}`),
-      '以上数据来源于百度百科'
-    ]
+    const msgs = data.data.list.map((e: any, i: number) => {
+      const title = `${e.title}\n${e.link}`
+      return i > 0 ? `${i}.${title}` : title
+    }) as string[]
 
-    return msgs.map((e, i) => ({ user_id: uin, message: i > 0 ? `${i}.${e}` : e }))
+    msgs.push('以上数据来源于百度百科')
+
+    return msgs.map(e => ({ nickname, user_id: uin, message: e }))
   } else {
     console.error(data.message)
     return '啊哦，出错了'
