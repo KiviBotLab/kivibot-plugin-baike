@@ -3,7 +3,7 @@
 [![npm-version](https://img.shields.io/npm/v/kivibot-plugin-baike?color=527dec&label=kivibot-plugin-baike&style=flat-square)](https://npm.im/kivibot-plugin-baike)
 [![dm](https://shields.io/npm/dm/kivibot-plugin-baike?style=flat-square)](https://npm.im/kivibot-plugin-baike)
 
-[`KiviBot`](https://beta.kivibot.com)` 的 [百度百科](https://baike.baidu.com/) 插件，提供词条百科、词条搜索功能，支持模糊匹配。
+[`KiviBot`](https://beta.kivibot.com) 的 [百度百科](https://baike.baidu.com/) 插件，提供词条百科、词条搜索功能，支持模糊匹配。
 
 **安装**
 
