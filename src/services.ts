@@ -1,4 +1,5 @@
 import { http, segment } from '@kivibot/core'
+import { decode } from 'html-entities'
 
 import type { Forwardable } from '@kivibot/core'
 
@@ -13,7 +14,7 @@ export async function fetchBaike(word: string, index?: string) {
   if (data.status === 200) {
     return [
       segment.image(data.data.cover),
-      '\n' + data.data.description,
+      '\n' + decode(data.data.description),
       '\n详情：' + data.data.link
     ]
   } else {

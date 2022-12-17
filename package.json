@@ -1,6 +1,6 @@
 {
   "name": "kivibot-plugin-baike",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "QQ 机器人框架 KiviBot 的百度百科插件，提供词条百科、词条搜索功能，支持模糊匹配",
   "main": "lib/index.js",
   "repository": "KiviBotLab/kivibot-plugin-baike",
@@ -28,5 +28,8 @@
     "rimraf": "^3.0.2",
     "tsc-alias": "^1.8.1",
     "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "html-entities": "^2.3.3"
   }
 }
